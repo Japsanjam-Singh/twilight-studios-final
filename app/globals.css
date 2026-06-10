@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #080808;
+  --foreground: #f8f8f8;
 }
 
 @theme inline {
@@ -12,15 +12,118 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 78% 12%,
+      rgba(190, 190, 190, 0.12),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 18% 78%,
+      rgba(120, 120, 120, 0.11),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 255, 255, 0.045),
+      transparent 52%
+    ),
+    linear-gradient(
+      135deg,
+      #050505 0%,
+      #101010 25%,
+      #1f1f1f 48%,
+      #151515 72%,
+      #060606 100%
+    );
+
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    );
+
+  background-size: 22px 22px;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      circle,
+      transparent 38%,
+      rgba(0, 0, 0, 0.42) 100%
+    );
+}
+
+main,
+section {
+  background-color: transparent;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+img {
+  user-select: none;
+}
+
+::selection {
+  background: rgba(160, 160, 160, 0.35);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}
+
+a {
+  transition: all 0.25s ease;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #9a9a9a;
+  outline-offset: 4px;
 }

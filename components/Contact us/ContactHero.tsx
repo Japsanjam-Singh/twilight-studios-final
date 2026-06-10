@@ -1,8 +1,8 @@
 export default function ContactHero() {
   return (
-    <section className="relative overflow-hidden bg-[#0b0b0b] py-24 sm:py-28">
+    <section className="relative overflow-hidden bg-transparent py-24 sm:py-28">
       {/* subtle background gradient */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black via-[#0b0b0b] to-[#141414]" />
+      <div className="pointer-events-none absolute inset-0 " />
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="grid items-center gap-12 lg:grid-cols-2">

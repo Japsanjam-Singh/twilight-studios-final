@@ -75,12 +75,10 @@ export default function HelpPage() {
       <section className="bg-[#0d0d0d] px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#f5a623]">
-              FAQ
+            <p className="text-xl font-semibold uppercase tracking-[0.35em] text-[#f5a623]">
+              Frequently Asked Questions (FAQs)
             </p>
-            <h2 className="mt-4 text-3xl font-bold sm:text-5xl">
-              Common Questions
-            </h2>
+            
           </div>
 
           <div className="mt-12 space-y-5">

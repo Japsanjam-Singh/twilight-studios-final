@@ -4,87 +4,131 @@ import Link from "next/link"
 const featuredItems = [
   {
     title: "Portrait Sessions",
-    image: "/images/featured/portrait.jpg",
+    category: "Studio Portraits",
+    image: "/images/portrait.jpeg",
+    position: "object-center",
   },
   {
     title: "Wedding Stories",
-    image: "/images/featured/wedding.jpg",
+    category: "Weddings",
+    image: "/images/weddings.png",
+    position: "object-center",
   },
   {
     title: "Studio Shoots",
-    image: "/images/featured/studio.jpg",
+    category: "Creative Space",
+    image: "/images/studio.PNG",
+    position: "object-center",
   },
   {
     title: "Brand Content",
-    image: "/images/featured/brand.jpg",
+    category: "Business & Social",
+    image: "/images/brand.jpeg",
+    position: "object-[center_20%]",
   },
   {
     title: "Events & Celebrations",
-    image: "/images/featured/events.jpg",
+    category: "Events",
+    image: "/images/wed2.jpeg",
+    position: "object-center",
   },
-  {
-    title: "Drone Visuals",
-    image: "/images/featured/drone.jpg",
-  },
+  
 ]
 
 export default function FeaturedWork() {
   return (
-    <section className="bg-[#111111] py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.35em] text-[#f5a623]">
-            Featured Work
-          </p>
+    <section className="relative overflow-hidden bg-[#050505] py-20 text-white sm:py-28">
+      <div className="absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#f5a623]/10 blur-[110px]" />
 
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Stories Framed with Precision
-          </h2>
+      <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <div className="mb-14 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#f5a623]">
+              Featured Work
+            </p>
 
-          <p className="mt-5 text-base leading-8 text-gray-300 sm:text-lg">
-            A glimpse into our creative work across portraits, events,
-            weddings, studio sessions, and cinematic visual storytelling.
+            <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              Real Moments. Clean Frames. Lasting Impressions.
+            </h2>
+          </div>
+
+          <p className="max-w-md text-base leading-8 text-neutral-300">
+            Explore a glimpse of Twilight Studios through portraits, weddings,
+            events, studio shoots, brand visuals, and creative storytelling.
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredItems.map((item) => (
-            <div
-              key={item.title}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-black/30"
-            >
-              <div className="relative h-[320px] w-full">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-110"
-                />
-              </div>
+        <div className="grid gap-5 lg:grid-cols-12">
+          <GalleryCard item={featuredItems[0]} className="lg:col-span-7" large />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90" />
+          <GalleryCard item={featuredItems[1]} className="lg:col-span-5" large />
 
-              <div className="absolute inset-x-0 bottom-0 p-6">
-                <p className="text-sm uppercase tracking-[0.25em] text-[#f5a623]">
-                  
-                </p>
-                <h3 className="mt-2 text-2xl font-semibold text-white">
-                  {item.title}
-                </h3>
-              </div>
-            </div>
-          ))}
+          <GalleryCard item={featuredItems[2]} className="lg:col-span-4" />
+
+          <GalleryCard item={featuredItems[3]} className="lg:col-span-4" />
+
+          <GalleryCard item={featuredItems[4]} className="lg:col-span-4" />
+
         </div>
 
         <div className="mt-12 flex justify-center">
           <Link
             href="/services"
-            className="rounded-full border border-[#f5a623] px-6 py-3 text-sm font-semibold text-[#f5a623] transition duration-300 hover:bg-[#f5a623] hover:text-black"
+            className="rounded-full border border-white/15 bg-white/10 px-7 py-3 text-sm font-semibold text-white transition hover:border-[#f5a623] hover:text-[#f5a623]"
           >
-            View Full Portfolio
+            View All Services
           </Link>
         </div>
       </div>
     </section>
+  )
+}
+
+function GalleryCard({
+  item,
+  className = "",
+  large = false,
+  wide = false,
+}: {
+  item: {
+    title: string
+    category: string
+    image: string
+    position: string
+  }
+  className?: string
+  large?: boolean
+  wide?: boolean
+}) {
+  return (
+    <div
+      className={`group relative overflow-hidden rounded-[1.7rem] bg-neutral-900 ${className}`}
+    >
+      <div
+        className={`relative w-full ${
+          large ? "h-[520px]" : wide ? "h-[360px]" : "h-[360px]"
+        }`}
+      >
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className={`${item.position} object-cover transition duration-700 group-hover:scale-105`}
+        />
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+
+      <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
+        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#f5a623]">
+          {item.category}
+        </p>
+
+        <h3 className="mt-2 text-2xl font-semibold text-white">
+          {item.title}
+        </h3>
+      </div>
+    </div>
   )
 }

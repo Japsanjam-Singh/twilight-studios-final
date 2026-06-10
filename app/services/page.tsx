@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Camera, Video, Heart, Building2, Sparkles, Calendar } from "lucide-react"
+import Image from "next/image"
 
 const services = [
   {
@@ -42,7 +43,44 @@ const packages = [
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <section className="border-b border-white/10 bg-[#090909] px-6 py-24">
+    
+      <section className="relative overflow-hidden bg-[#050505] py-20">
+  <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+    <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div className="relative overflow-hidden rounded-[2rem]">
+        <Image
+          src="/images/studio.PNG"
+          alt="Twilight Studios"
+          width={1200}
+          height={800}
+          className="h-[500px] w-full object-cover"
+        />
+      </div>
+
+      <div>
+        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#f5a623]">
+          Twilight Studios
+        </p>
+
+        <h2 className="mt-4 text-4xl font-bold text-white lg:text-5xl">
+          Capturing Moments That Matter
+        </h2>
+
+        <p className="mt-6 text-lg leading-8 text-neutral-300">
+          From professional portraits and wedding photography to cinematic
+          videography and studio rentals, Twilight Studios delivers creative
+          experiences designed around your vision.
+        </p>
+
+        <p className="mt-4 text-lg leading-8 text-neutral-300">
+          Every session is planned with attention to detail, ensuring timeless
+          imagery and a comfortable client experience.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+  <section className="border-b border-white/10 bg-[#090909] px-6 py-24">
         <div className="mx-auto max-w-6xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#f5a623]">
             Services

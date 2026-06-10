@@ -22,8 +22,8 @@ const highlights = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="border-b border-white/10 bg-[#090909] px-6 py-24">
+    <main className="min-h-screen bg-transparent text-white">
+      <section className="border-b border-white/10 bg-transparent px-6 py-24">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#f5a623]">
@@ -47,7 +47,7 @@ export default function AboutPage() {
             </p>
 
             <Link
-              href="/book"
+              href="/booking"
               className="mt-8 inline-flex rounded-full bg-[#f5a623] px-7 py-3.5 font-semibold text-black transition hover:bg-[#ffb648]"
             >
               Book a Session
@@ -188,7 +188,7 @@ export default function AboutPage() {
 
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
-              href="/book"
+              href="/booking"
               className="rounded-full bg-[#f5a623] px-8 py-3.5 font-semibold text-black transition hover:bg-[#ffb648]"
             >
               Book Now

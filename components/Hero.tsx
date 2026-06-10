@@ -7,21 +7,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const slides = [
   {
-    image: "/images/hero.jpg",
+    image: "/images/hero_1.PNG",
     label: "Calgary Photography & Videography",
     title: "Every Shot,",
     highlight: "Perfectly Captured.",
     text: "Creative photography, videography, and studio sessions designed to capture your best moments with a polished professional finish.",
   },
   {
-    image: "/images/hero-2.jpg",
+    image: "/images/hero_2.JPG",
     label: "Portraits • Weddings • Events",
     title: "Timeless Moments,",
     highlight: "Beautifully Captured.",
     text: "From portraits and family sessions to weddings, birthdays, and special events, we create visuals that feel natural and memorable.",
   },
   {
-    image: "/images/hero-3.jpg",
+    image: "/images/hero_3.jpeg",
     label: "Studio Rental & Creative Space",
     title: "Your Vision,",
     highlight: "Creatively Captured.",
@@ -41,101 +41,116 @@ export default function Hero() {
   }
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 4000)
+    const interval = setInterval(nextSlide, 5000)
     return () => clearInterval(interval)
   }, [])
 
+  const slide = slides[current]
+
   return (
-    <section className="relative min-h-[86vh] overflow-hidden bg-black text-white">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.image}
-          className={`absolute inset-0 transition-all duration-[1200ms] ease-in-out ${
-            index === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
-          }`}
-        >
-          <Image
-            src={slide.image}
-            alt="Twilight Studios"
-            fill
-            priority={index === 0}
-            sizes="100vw"
-            className="object-cover object-center"
-          />
+<section className="relative overflow-hidden bg-white/[0.02] text-white">
+      <div className="absolute inset-0">
+        <Image
+          src={slide.image}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="scale-110 object-cover object-center opacity-25 blur-3xl"
+        />
+<div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,rgba(180,180,180,0.12),transparent_35%),linear-gradient(90deg,rgba(15,15,15,0.75)_0%,rgba(15,15,15,0.45)_45%,rgba(15,15,15,0.15)_100%)]" />      </div>
 
-          <div className="absolute inset-0 bg-black/55" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
-        </div>
-      ))}
-
-      <div className="relative mx-auto flex min-h-[86vh] max-w-7xl items-center px-6 sm:px-8 lg:px-12">
-        <div className="max-w-3xl pt-14">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-[#f5a623] sm:text-sm">
-            {slides[current].label}
+    <div className="relative z-10 mx-auto grid min-h-[calc(100vh-88px)] max-w-7xl grid-cols-1 items-center gap-10 px-6 py-10 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:px-12">
+        <div className="order-2 lg:order-1">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-[#f5a623] sm:text-sm">
+            {slide.label}
           </p>
 
-          <h1 className="text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-7xl">
-            {slides[current].title}
-            <span className="mt-1 block text-[#f5a623]">
-              {slides[current].highlight}
-            </span>
+          <h1 className="max-w-3xl text-4xl font-bold leading-[1.03] sm:text-5xl lg:text-6xl xl:text-7xl">
+            {slide.title}
+            <span className="block text-[#f5a623]">{slide.highlight}</span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-8 text-neutral-300 sm:text-lg">
-            {slides[current].text}
+          <p className="mt-6 max-w-xl text-base leading-8 text-neutral-300 sm:text-lg">
+            {slide.text}
           </p>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Link
               href="/booking"
-              className="inline-flex w-fit items-center justify-center rounded-full bg-[#f5a623] px-7 py-3.5 text-sm font-semibold text-black transition duration-300 hover:bg-[#ffb648]"
+              className="inline-flex w-fit items-center justify-center rounded-full bg-[#f5a623] px-7 py-3.5 text-sm font-bold text-black transition hover:bg-[#ffb648]"
             >
               Book a Session
             </Link>
 
             <Link
               href="/services"
-              className="inline-flex w-fit items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition duration-300 hover:border-[#f5a623] hover:text-[#f5a623]"
+              className="inline-flex w-fit items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition hover:border-[#f5a623] hover:text-[#f5a623]"
             >
               Explore Services
             </Link>
           </div>
 
-          <div className="mt-10 flex items-center gap-3">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrent(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                className={`transition-all duration-300 ${
-                  index === current
-                    ? "h-2.5 w-10 rounded-full bg-[#f5a623]"
-                    : "h-2.5 w-2.5 rounded-full bg-white/40 hover:bg-white"
-                }`}
+          <div className="mt-10 flex items-center gap-4">
+            <button
+              onClick={prevSlide}
+              aria-label="Previous slide"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur transition hover:bg-[#f5a623] hover:text-black"
+            >
+              <ChevronLeft size={21} />
+            </button>
+
+            <div className="flex items-center gap-3">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrent(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                  className={`h-2.5 rounded-full transition-all ${
+                    index === current
+                      ? "w-10 bg-[#f5a623]"
+                      : "w-2.5 bg-white/40 hover:bg-white"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={nextSlide}
+              aria-label="Next slide"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur transition hover:bg-[#f5a623] hover:text-black"
+            >
+              <ChevronRight size={21} />
+            </button>
+          </div>
+        </div>
+
+        <div className="order-1 flex justify-center lg:order-2">
+          <div className="relative w-full max-w-[455px]">
+<div className="absolute -right-8 top-10 h-[78%] w-[70%] rounded-full bg-white/10 blur-[90px]" />
+            <div className="relative h-[430px] overflow-hidden rounded-[2rem] shadow-[0_35px_90px_rgba(0,0,0,0.65)] sm:h-[500px] lg:h-[570px]">
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                priority={current === 0}
+                sizes="(max-width: 768px) 90vw, 455px"
+                className="object-cover object-top"
               />
-            ))}
+
+              <div className="absolute inset-0 bg-gradient-to-t  via-transparent to-transparent" />
+
+<div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/15 bg-[#1f1f1f]/70 px-5 py-4 backdrop-blur-md">                <p className="text-xs uppercase tracking-[0.28em] text-[#f5a623]">
+                  Twilight Studios
+                </p>
+                <p className="mt-1 text-sm text-neutral-200">
+                  Calgary Portraits • Events • Creative Studio
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <button
-        onClick={prevSlide}
-        aria-label="Previous slide"
-        className="absolute left-4 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/10 backdrop-blur-md transition hover:bg-white hover:text-black md:flex"
-      >
-        <ChevronLeft size={21} />
-      </button>
-
-      <button
-        onClick={nextSlide}
-        aria-label="Next slide"
-        className="absolute right-4 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/10 backdrop-blur-md transition hover:bg-white hover:text-black md:flex"
-      >
-        <ChevronRight size={21} />
-      </button>
-
-      <div className="absolute bottom-0 left-0 h-20 w-full bg-gradient-to-t from-black to-transparent" />
     </section>
   )
 }
