@@ -16,7 +16,7 @@ if (!webhookSecret) {
   throw new Error("STRIPE_WEBHOOK_SECRET is missing")
 }
 
-const stripe = new Stripe(stripeSecretKey)
+const stripe = new Stripe(stripeSecretKey!)
 
 export async function POST(req: Request) {
   const body = await req.text()
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      webhookSecret
+      webhookSecret!
     )
   } catch (error: unknown) {
     const message =
